@@ -1,16 +1,18 @@
 <script type="text/worker">
 
 var bpBonus = function(score) {
+  var score = parseInt(score);
   var result = 0;
   if (score >= 12) {
-    for(var i = 11; i < score; i++ ) {
+    for(var i = 11; i < score; i++) {
       result += i-10;
     }
   }
   return result;
-}
+};
 
 var getIntAccMod = function(score) {
+  var score = parseInt(score);
   if( score <= 3 ) {
     return -3;
   } else if ( score <= 6 ) {
@@ -30,32 +32,36 @@ var getIntAccMod = function(score) {
   } else {
     return 5;
   }
-}
+};
 
 var getWisSpdMod = function(score) {
+  var score=parseInt(score);
   var result = Math.ceil((score/3 * -1) + 5);
   if( score <= 9 ) {
     result += 1;
   }
   return result;
-}
+};
 
 // not well-named because starting fame also uses this math
 var getSkillLearnMod = function(score) {
+  var score = parseInt(score);
   if( score <= 10 ) {
     return score - 10;
   } else {
     return score - 11;
   }
+};
+
+var lookupHalfScores = function(score, perc, table) {
+  var sco = parseInt(score);
+  if (perc >= 50) sco+= .5;
+  return table[sco];
 }
 
 on("change:str_value", function() {
   getAttrs(["str_value", "str_perc"], function(values) {
-    var str = parseInt(values.str_value);
-    if (values.str_perc >= 50) {
-      str += .5;
-    }
-    var mods = {
+    var strModsTable = {
       1: { dam: -7, lift: 10, carry: 20, drag: 30 },
       1.5: { dam: -6, lift: 10, carry: 20, drag: 30 },
       2: { dam: -6, lift: 10, carry: 20, drag: 30 },
@@ -106,11 +112,12 @@ on("change:str_value", function() {
       24.5: { dam: 13, lift: 10, carry: 20, drag: 30 },
       25: { dam: 14, lift: 10, carry: 20, drag: 30 },
     }
+    var mods = lookupHalfScores(values.str_value, values.str_perc, strModsTable);
     setAttrs({
-      dmg_mod: mods[str]['dam'],
-      lift: mods[str]['lift'],
-      carry: mods[str]['carry'],
-      drag: mods[str]['drag'],
+      dmg_mod: mods['dam'],
+      lift: mods['lift'],
+      carry: mods['carry'],
+      drag: mods['drag'],
     });
   });
 });
@@ -137,20 +144,79 @@ on("change:wis_value", function() {
 
 on("change:dex_value", function() {
   getAttrs(["dex_value"], function(values) {
-  
-  })
+    var dexModsTable = {
+      1: { spd: 8, acc: -5 },
+      1.5: { spd: 8, acc: -4 },
+      2: { spd: 8, acc: -4 },
+      2.5: { spd: 7, acc: -4 },
+      3: { spd: 7, acc: -4 },
+      3.5: { spd: 7, acc: -3 },
+      4: { spd: 6, acc: -3 },
+      4.5: { spd: 6, acc: -3 },
+      5: { spd: 6, acc: -3 },
+      5.5: { spd: 5, acc: -2 },
+      6: { spd: 5, acc: -2 },
+      6.5: { spd: 5, acc: -2 },
+      7: { spd: 4, acc: -2 },
+      7.5: { spd: 4, acc: -1 },
+      8: { spd: 4, acc: -1 },
+      8.5: { spd: 3, acc: -1 },
+      9: { spd: 3, acc: -1 },
+      9.5: { spd: 3, acc: 0 },
+      10: { spd: 2, acc: 0 },
+      10.5: { spd: 2, acc: 0 },
+      11: { spd: 2, acc: 0 },
+      11.5: { spd: 1, acc: 0 },
+      12: { spd: 1, acc: 1 },
+      12.5: { spd: 1, acc: 1 },
+      13: { spd: 0, acc: 1 },
+      13.5: { spd: 0, acc: 1 },
+      14: { spd: 0, acc: 2 },
+      14.5: { spd: -1, acc: 2 },
+      15: { spd: -1, acc: 2 },
+      15.5: { spd: -1, acc: 2 },
+      16: { spd: -2, acc: 3 },
+      16.5: { spd: -2, acc: 3 },
+      17: { spd: -2, acc: 3 },
+      17.5: { spd: -3, acc: 3 },
+      18: { spd: -3, acc: 4 },
+      18.5: { spd: -3, acc: 4 },
+      19: { spd: -4, acc: 4 },
+      19.5: { spd: -4, acc: 4 },
+      20: { spd: -4, acc: 5 },
+      20.5: { spd: -5, acc: 5 },
+      21: { spd: -5, acc: 5 },
+      21.5: { spd: -5, acc: 5 },
+      22: { spd: -6, acc: 6 },
+      22.5: { spd: -6, acc: 6 },
+      23: { spd: -6, acc: 6 },
+      23.5: { spd: -7, acc: 6 },
+      24: { spd: -7, acc: 7 },
+      24.5: { spd: -7, acc: 7 },
+      25: { spd: -8, acc: 7 },
+    }
+    var mods = lookupHalfScores(values.dex_value, values.dex_perc, dexModsTable);
+    setAttrs({
+      dex_spd_mod: mods['spd'],
+      dex_acc_mod: mods['acc'],
+    });
+  });
 });
 
 on("change:con_value", function() {
   getAttrs(["con_value"], function(values) {
-  
-  })
+    setAttrs({
+
+    });
+  });
 });
 
 on("change:lks_value", function() {
   getAttrs(["lks_value"], function(values) {
-    lks_start_fame: getSkillLearnMod(values.lks_value),
-  })
+    setAttrs({
+      lks_start_fame: getSkillLearnMod(values.lks_value),
+    });
+  });
 });
 
 on("change:cha_value", function() {
@@ -164,9 +230,17 @@ on("change:cha_value", function() {
 
 on("change:wis_spd_mod change:dex_spd_mod", function() {
   getAttrs(["wis_spd_mod, dex_spd_mod"], function(values) {
-    setAttrs({
-      base_speed: values.wis_spd_mod + values.dex_spd_mod,
-    });
+    if (typeof values.wis_spd_mod !== 'undefined' && typeof values.dex_spd_mod !== 'undefined') {
+      setAttrs({
+        base_speed: parseInt(values.wis_spd_mod) + parseInt(values.dex_spd_mod),
+      });
+    } else {
+      setAttrs({
+        base_speed: 0,
+        wis_spd_mod: values.wis_spd_mod || 0,
+        dex_spd_mod: values.dex_spd_mod || 0,
+      });
+    }
   });
 });
 
