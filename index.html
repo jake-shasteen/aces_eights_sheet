@@ -44,6 +44,7 @@ var getWisSpdMod = function(score) {
 };
 
 // not well-named because starting fame also uses this math
+// so does constitution hit point modifier
 var getSkillLearnMod = function(score) {
   var score = parseInt(score);
   if( score <= 10 ) {
@@ -206,7 +207,7 @@ on("change:dex_value", function() {
 on("change:con_value", function() {
   getAttrs(["con_value"], function(values) {
     setAttrs({
-
+      con_hp_mod: getSkillLearnMod(values.con_value),
     });
   });
 });
