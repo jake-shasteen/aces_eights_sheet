@@ -5,10 +5,11 @@
 }
 
 * + * {
-    margin: 5px;
+    margin:  5px;
 }
 
 .sheet-wrapper {
+    background: rgba(200,200,200,.5);
     display: flex;
     flex-direction: column;
 }
@@ -73,10 +74,12 @@
 }
 
 .sheet-horizontal-set {
+    margin: 0;
     display:  flex;
 }
 
 .sheet-vertical-set {
+    margin: 0;
     display:  flex;
     flex-direction:  column;
 }
@@ -121,4 +124,30 @@ input[name="attr_quirks-flaws"] {
 
 div.sheet-flex-initial {
     flex:  initial;
+}
+
+h3 {
+  text-align:  center;
+}
+
+.sheet-header,
+.sheet-abilities,
+.sheet-encumbrance,
+.sheet-health,
+.sheet-speed,
+.sheet-accuracy,
+.sheet-wounds,
+.sheet-weapons,
+.sheet-skills,
+.sheet-talents,
+.sheet-quirks-flaws,
+.sheet-horse,
+.sheet-professions,
+.sheet-equipment,
+.sheet-personal-goals,
+.sheet-family-history,
+.sheet-allies-enemies,
+.sheet-notes {
+  margin: 0;
+  border: 1px solid;
 }
