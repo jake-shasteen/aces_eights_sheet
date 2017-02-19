@@ -144,7 +144,7 @@ on("change:wis_value", function() {
 });
 
 on("change:dex_value", function() {
-  getAttrs(["dex_value"], function(values) {
+  getAttrs(["dex_value", "dex_perc"], function(values) {
     var dexModsTable = {
       1: { spd: 8, acc: -5 },
       1.5: { spd: 8, acc: -4 },
@@ -230,16 +230,10 @@ on("change:cha_value", function() {
 });
 
 on("change:wis_spd_mod change:dex_spd_mod", function() {
-  getAttrs(["wis_spd_mod, dex_spd_mod"], function(values) {
+  getAttrs(["wis_spd_mod", "dex_spd_mod"], function(values) {
     if (typeof values.wis_spd_mod !== 'undefined' && typeof values.dex_spd_mod !== 'undefined') {
       setAttrs({
         base_speed: parseInt(values.wis_spd_mod) + parseInt(values.dex_spd_mod),
-      });
-    } else {
-      setAttrs({
-        base_speed: 0,
-        wis_spd_mod: values.wis_spd_mod || 0,
-        dex_spd_mod: values.dex_spd_mod || 0,
       });
     }
   });
@@ -438,7 +432,7 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
     <div class="vertical-set flex-one-and-a-half">
       <div class="speed">
         <div>
-          Base Speed (wis mod + dex mod): <span name="base_speed"></span>
+          Base Speed (wis mod + dex mod): <span name="attr_base_speed"></span>
         </div>
       </div>
       <div class="accuracy">
