@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 <div class="wrapper">
   <div class="header">
     <div class="details">
@@ -66,21 +67,117 @@
       <img style="width:350px" src="http://www.kenzerco.com/aces_n_eights/images/aces_n_eights_hdr3.jpg">
     </div>
   </div>
-  <div class="abilities"></div>
-  <div class="encumbrance"></div>
-  <div class="health"></div>
-  <div class="speed"></div>
-  <div class="accuracy"></div>
-  <div class="wounds"></div>
-  <div class="weapons"></div>
-  <div class="skills"></div>
-  <div class="talents"></div>
-  <div class="quirks-flaws"></div>
-  <div class="horse"></div>
-  <div class="professions"></div>
-  <div class="gear-loot"></div>
-  <div class="personal-goals"></div>
-  <div class="family-history"></div>
-  <div class="allies-enemies"></div>
-  <div class="notes"></div>
+  <div class="horizontal-set">
+    <div class="abilities">
+      <h3>Abilities</h3>
+      <div>Str</div>
+      <div>Int</div>
+      <div>Wis</div>
+      <div>Dex</div>
+      <div>Con</div>
+      <div>Lks</div>
+      <div>Cha</div>
+      <div>Rep</div>
+    </div>
+    <div class="vertical-set">
+      <div class="encumbrance">
+        <div class="encumbrance-line">
+          <span>Lift</span>
+          <span name="attr_lift"></span>
+          <span>lbs.</span>
+        </div>
+        <div class="encumbrance-line">
+          <span>Carry</span>
+          <span name="attr_carry"></span>
+          <span>lbs.</span>
+        </div>
+        <div class="encumbrance-line">
+          <span>Drag</span>
+          <span name="attr_drag"></span>
+          <span>lbs.</span>
+        </div>
+      </div>
+      <div class="health">
+          Health stuff here
+      </div>
+    </div>
+    <div class="vertical-set">
+      <div class="speed">
+        Speed stuff
+      </div>
+      <div class="accuracy">
+        Accuracy stuff
+      </div>
+    </div>
+  </div>
+  <div class="wounds">
+    <h3>Wounds</h3>
+    <div class="wound"></div>
+  </div>
+  <div class="weapons">
+    <h3>Weapons</h3>
+    <div class="weapon"></div>
+  </div>
+  <div class="skills">
+    <h3 class="vertical-text">Skills</h3>
+    <fieldset class="repeating_skills">
+      <div class="skill horizontal-set">
+        <input type="text" name="attr_skillname">
+        <input type="text" name="attr_tallies">
+        <input type="text" name="attr_mastery">
+      </div>
+    </fieldset>
+  </div>
+  <div class="horizontal-set">
+    <div class="vertical-set">
+      <div class="horizontal-set flex-initial">
+        <div class="talents">
+          <h3>Talents</h3>
+          <fieldset class="repeating_talents">
+            <input type="text" name="attr_talent">
+          </fieldset>
+          <span>end talents</span>
+        </div>
+        <div class="quirks-flaws">
+          <h3>Quirks & Flaws</h3>
+          <fieldset class="repeating_quirks-flaws">
+            <input type="text" name="attr_quirks-flaws">
+          </fieldset>
+          <span>end quirks</span>
+        </div>
+      </div>
+      <div class="horse">
+          <h3>Horse</h3>
+          <p>bad horse,</p>
+          <p>bad horse,</p>
+          <p>bad horse,</p>
+          <p>he's bad</p>
+      </div>
+      <div class="professions">
+          <h3>Professional Experience</h3>
+      </div>
+    </div>
+    <div class="vertical-set">
+      <div class="equipment">
+        <h3>Equipment</h3>
+        <fieldset class="repeating_equipment">
+          <input type="text" name="attr_equipment">
+        </fieldset>
+      </div>
+      <div class="personal-goals">
+          <h3>Personal Goals</h3>
+      </div>
+    </div>
+  </div>
+    <div class="family-history">
+        <h3>Family History</h3>
+    </div>
+    <div class="horizontal-set">
+      <div class="allies-enemies">
+          <h3>Allies & Enemies</h3>
+      </div>
+      <div class="notes">
+          <h3>Notes</h3>
+      </div>
+    </div>
 </div>

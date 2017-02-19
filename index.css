@@ -1,8 +1,21 @@
 * {
     box-sizing:  border-box;
+    font-family: 'Courier New', serif;
+    font-weight: bold;
+}
+
+* + * {
+    margin: 5px;
+}
+
+.sheet-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .charsheet input {
+    font-family: 'Courier New', serif;
+    font-weight: lighter;
     width: 50px;
     border-radius: 0;
     box-shadow: none;
@@ -42,7 +55,6 @@
 }
 
 .sheet-header-field {
-    line-height: 0;
     margin: 5px;
 }
 
@@ -50,4 +62,63 @@
     flex: .5;
     display: flex;
     align-items: center;
+}
+
+.sheet-abilities {
+    flex: 1;
+}
+
+.sheet-encumbrance-line {
+    margin: 5px;
+}
+
+.sheet-horizontal-set {
+    display:  flex;
+}
+
+.sheet-vertical-set {
+    display:  flex;
+    flex-direction:  column;
+}
+
+.sheet-vertical-set div,
+.sheet-horizontal-set div {
+    flex: 1;
+}
+
+.sheet-skills .repcontainer {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.sheet-fill-height {
+    height:  100%;
+}
+
+.sheet-skills .repitem {
+    flex: 1;
+}
+
+input[name="attr_skillname"] {
+    width: 100px;
+}
+
+input[name="attr_tallies"] {
+    width: 80px;
+}
+
+input[name="attr_mastery"] {
+    width: 80px;
+}
+
+input[name="attr_talent"] {
+    width: 200px;
+}
+
+input[name="attr_quirks-flaws"] {
+    width: 200px;
+}
+
+div.sheet-flex-initial {
+    flex:  initial;
 }
