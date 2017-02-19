@@ -162,6 +162,14 @@ on("change:cha_value", function() {
   });
 });
 
+on("change:wis_spd_mod change:dex_spd_mod", function() {
+  getAttrs(["wis_spd_mod, dex_spd_mod"], function(values) {
+    setAttrs({
+      base_speed: values.wis_spd_mod + values.dex_spd_mod,
+    });
+  });
+});
+
 </script>
 <div class="wrapper">
   <div class="header">
@@ -354,7 +362,9 @@ on("change:cha_value", function() {
     </div>
     <div class="vertical-set flex-one-and-a-half">
       <div class="speed">
-        Speed stuff
+        <div>
+          Base Speed (wis mod + dex mod): <span name="base_speed"></span>
+        </div>
       </div>
       <div class="accuracy">
         Accuracy stuff
