@@ -4,10 +4,6 @@
     font-weight: bold;
 }
 
-* + * {
-    margin:  5px;
-}
-
 .sheet-wrapper {
     background: rgba(0,0,0,.15);
     display: flex;
@@ -120,6 +116,12 @@ input.sheet-short {
     width:  30px;
 }
 
+input[type="number"].sheet-short {
+    width: 32px;
+    padding: 0;
+    margin: 0;
+}
+
 select.sheet-medium,
 input.sheet-medium {
     width:  100px;
@@ -171,6 +173,11 @@ h3 {
   padding: 0;
   text-align:  center;
   font-size: 5px;
+}
+
+.sheet-label + span {
+    display: block;
+    text-align: center;
 }
 
 .sheet-box {
