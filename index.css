@@ -58,6 +58,15 @@
     align-items: center;
 }
 
+.sheet-speed,
+.sheet-accuracy {
+    padding:  5px;
+}
+
+.sheet-abbreviation {
+  margin-left: 5px;
+}
+
 .sheet-abilities {
     padding-bottom:  5px;
     flex: 1;
