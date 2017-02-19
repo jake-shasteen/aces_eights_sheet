@@ -31,14 +31,6 @@
     border: 1px solid;
 }
 
-.sheet-character-name input {
-    width: 100px;
-}
-
-.sheet-player-name input {
-    width: 100px;
-}
-
 .sheet-wrapper {
     border: 1px solid;
 }
@@ -102,22 +94,19 @@
     flex: 1;
 }
 
-input[name="attr_skillname"] {
+input[name="attr_nationality"],
+input[name="attr_residence"],
+input[name="attr_profession"],
+input[name="attr_religion"],
+input[name="attr_haircolor"],
+input[name="attr_eyecolor"],
+input[name="attr_skillname"],
+input[name="attr_name"],
+input[name="attr_player_name"] {
     width: 100px;
 }
 
-input[name="attr_tallies"] {
-    width: 80px;
-}
-
-input[name="attr_mastery"] {
-    width: 80px;
-}
-
-input[name="attr_talent"] {
-    width: 200px;
-}
-
+input[name="attr_talent"],
 input[name="attr_quirks-flaws"] {
     width: 200px;
 }
