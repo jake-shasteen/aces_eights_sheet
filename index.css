@@ -61,8 +61,26 @@
     flex: 1;
 }
 
+.sheet-flex-half {
+    flex:  .5  !important;
+}
+
+.sheet-flex-one-and-a-half {
+    flex:  1.5  !important;
+}
+
+
+.sheet-encumbrance {
+    display: flex;
+    align-items:  center;
+    align-content: center;
+    flex-direction:  column;
+    justify-content:  center;
+}
+
 .sheet-encumbrance-line {
     margin: 5px;
+    flex: 0 0;
 }
 
 .sheet-horizontal-set {
@@ -76,22 +94,45 @@
     flex-direction:  column;
 }
 
-.sheet-vertical-set div,
-.sheet-horizontal-set div {
+.sheet-vertical-set > div,
+.sheet-horizontal-set > div,
+.sheet-horizontal-set > span {
     flex: 1;
-}
-
-.sheet-skills .repcontainer {
-    display: flex;
-    flex-flow: row wrap;
 }
 
 .sheet-fill-height {
     height:  100%;
 }
 
-.sheet-skills .repitem {
-    flex: 1;
+.sheet-skills .repcontainer,
+.sheet-wounds .repcontainer {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.sheet-skills .repitem,
+.sheet-wounds .repitem {
+    flex: initial;
+}
+
+select.sheet-short,
+input.sheet-short {
+    width:  30px;
+}
+
+select.sheet-medium,
+input.sheet-medium {
+    width:  100px;
+}
+
+select.sheet-long,
+input.sheet-long {
+    width:  200px;
+}
+
+select.sheet-fill,
+input.sheet-fill {
+    width:  100%;
 }
 
 input[name="attr_nationality"],
@@ -106,9 +147,15 @@ input[name="attr_player_name"] {
     width: 100px;
 }
 
-input[name="attr_talent"],
-input[name="attr_quirks-flaws"] {
+input[name="attr_horse_vices"],
+input[name="attr_horse_markings"] {
     width: 200px;
+}
+
+input[name="attr_talent"],
+input[name="attr_quirks-flaws"],
+input[name="attr_equipment"] {
+    width: 100%;
 }
 
 div.sheet-flex-initial {
@@ -117,6 +164,29 @@ div.sheet-flex-initial {
 
 h3 {
   text-align:  center;
+}
+
+.sheet-label {
+  margin: 0;
+  padding: 0;
+  text-align:  center;
+  font-size: 5px;
+}
+
+.sheet-box {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,.5);
+}
+
+span.sheet-abbreviation {
+  flex: .5 0;
+}
+
+.sheet-horse > span,
+.sheet-family-history > span,
+.sheet-weapon > div {
+  font-size: 10px;
 }
 
 .sheet-header,

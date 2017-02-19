@@ -1,3 +1,124 @@
+<script type="text/worker">
+
+on("change:str_value", function() {
+  getAttrs(["str_value", "str_perc"], function(values) {
+    var str = parseInt(values.str_value);
+    if (values.str_perc >= 50) {
+      str += .5;
+    }
+    var mods = {
+      1: { dam: -7, lift: 10, carry: 20, drag: 30 },
+      1.5: { dam: -6, lift: 10, carry: 20, drag: 30 },
+      2: { dam: -6, lift: 10, carry: 20, drag: 30 },
+      2.5: { dam: -5, lift: 10, carry: 20, drag: 30 },
+      3: { dam: -5, lift: 10, carry: 20, drag: 30 },
+      3.5: { dam: -4, lift: 10, carry: 20, drag: 30 },
+      4: { dam: -4, lift: 10, carry: 20, drag: 30 },
+      4.5: { dam: -4, lift: 10, carry: 20, drag: 30 },
+      5: { dam: -3, lift: 10, carry: 20, drag: 30 },
+      5.5: { dam: -3, lift: 10, carry: 20, drag: 30 },
+      6: { dam: -3, lift: 10, carry: 20, drag: 30 },
+      6.5: { dam: -2, lift: 10, carry: 20, drag: 30 },
+      7: { dam: -2, lift: 10, carry: 20, drag: 30 },
+      7.5: { dam: -2, lift: 10, carry: 20, drag: 30 },
+      8: { dam: -1, lift: 10, carry: 20, drag: 30 },
+      8.5: { dam: -1, lift: 10, carry: 20, drag: 30 },
+      9: { dam: -1, lift: 10, carry: 20, drag: 30 },
+      9.5: { dam: -1, lift: 10, carry: 20, drag: 30 },
+      10: { dam: 0, lift: 10, carry: 20, drag: 30 },
+      10.5: { dam: 0, lift: 10, carry: 20, drag: 30 },
+      11: { dam: 0, lift: 10, carry: 20, drag: 30 },
+      11.5: { dam: 0, lift: 10, carry: 20, drag: 30 },
+      12: { dam: 1, lift: 10, carry: 20, drag: 30 },
+      12.5: { dam: 1, lift: 10, carry: 20, drag: 30 },
+      13: { dam: 1, lift: 10, carry: 20, drag: 30 },
+      13.5: { dam: 1, lift: 10, carry: 20, drag: 30 },
+      14: { dam: 2, lift: 10, carry: 20, drag: 30 },
+      14.5: { dam: 2, lift: 10, carry: 20, drag: 30 },
+      15: { dam: 2, lift: 10, carry: 20, drag: 30 },
+      15.5: { dam: 3, lift: 10, carry: 20, drag: 30 },
+      16: { dam: 3, lift: 10, carry: 20, drag: 30 },
+      16.5: { dam: 3, lift: 10, carry: 20, drag: 30 },
+      17: { dam: 4, lift: 10, carry: 20, drag: 30 },
+      17.5: { dam: 4, lift: 10, carry: 20, drag: 30 },
+      18: { dam: 4, lift: 10, carry: 20, drag: 30 },
+      18.5: { dam: 5, lift: 10, carry: 20, drag: 30 },
+      19: { dam: 5, lift: 10, carry: 20, drag: 30 },
+      19.5: { dam: 6, lift: 10, carry: 20, drag: 30 },
+      20: { dam: 6, lift: 10, carry: 20, drag: 30 },
+      20.5: { dam: 7, lift: 10, carry: 20, drag: 30 },
+      21: { dam: 7, lift: 10, carry: 20, drag: 30 },
+      21.5: { dam: 8, lift: 10, carry: 20, drag: 30 },
+      22: { dam: 8, lift: 10, carry: 20, drag: 30 },
+      22.5: { dam: 9, lift: 10, carry: 20, drag: 30 },
+      23: { dam: 10, lift: 10, carry: 20, drag: 30 },
+      23.5: { dam: 11, lift: 10, carry: 20, drag: 30 },
+      24: { dam: 12, lift: 10, carry: 20, drag: 30 },
+      24.5: { dam: 13, lift: 10, carry: 20, drag: 30 },
+      25: { dam: 14, lift: 10, carry: 20, drag: 30 },
+    }
+    setAttrs({
+      dmg_mod: mods[str]['dam'],
+      lift: mods[str]['lift'],
+      carry: mods[str]['carry'],
+      drag: mods[str]['drag'],
+    });
+  });
+});
+
+var bpBonus = function(score) {
+  var result = 0;
+  if (score >= 12) {
+    for(var i = 11; i < score; i++ ) {
+      result += i-10;
+    }
+  }
+  return result;
+}
+
+on("change:int_value", function() {
+  getAttrs(["int_value"], function(values) {
+    setAttrs({
+      int_bp_bonus: bpBonus(values.int_value),
+    });
+  });
+});
+
+on("change:wis_value", function() {
+  getAttrs(["wis_value"], function(values) {
+    setAttrs({
+      wis_bp_bonus: bpBonus(values.wis_value),
+    });
+  })
+});
+
+on("change:dex_value", function() {
+  getAttrs(["dex_value"], function(values) {
+  
+  })
+});
+
+on("change:con_value", function() {
+  getAttrs(["con_value"], function(values) {
+  
+  })
+});
+
+on("change:lks_value", function() {
+  getAttrs(["lks_value"], function(values) {
+  
+  })
+});
+
+on("change:cha_value", function() {
+  getAttrs(["cha_value"], function(values) {
+    setAttrs({
+      cha_bp_bonus: bpBonus(values.cha_value),
+    });
+  });
+});
+
+</script>
 <div class="wrapper">
   <div class="header">
     <div class="details">
@@ -39,7 +160,10 @@
       </div>
       <div class="header-field gender">
         Gender:
-        <input name="attr_gender" type="text">
+        <select class="medium" name="attr_gender">
+          <option>MALE</option>
+          <option>OTHER</option>
+        </select>
       </div>
       <div class="header-field age">
         Age:
@@ -69,16 +193,98 @@
   <div class="horizontal-set">
     <div class="abilities">
       <h3>Abilities</h3>
-      <div>Str</div>
-      <div>Int</div>
-      <div>Wis</div>
-      <div>Dex</div>
-      <div>Con</div>
-      <div>Lks</div>
-      <div>Cha</div>
-      <div>Rep</div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Str</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_str_value">.<input class="short" type="number" name="attr_str_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Damage Modifier</div>
+          <span name="attr_dmg_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Int</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_int_value">.<input class="short" type="number" name="attr_int_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Skill Learning Modifier</div>
+          <span name="attr_int_learn_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Wis</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_wis_value">.<input class="short" type="number" name="attr_wis_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Skill Learning Modifier</div>
+          <span name="attr_wis_learn_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Dex</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_dex_value">.<input class="short" type="number" name="attr_dex_perc">%
+        </span>
+        <span class="box">
+          <div class="label">"To-Hit" modifier</div>
+          <span name="attr_to-hit_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Con</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_con_value">.<input class="short" type="number" name="attr_con_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Hit Point Modifier</div>
+          <span name="attr_hitpoint_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Lks</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_lks_value">.<input class="short" type="number" name="attr_lks_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Rep/Fame Modifiers</div>
+          <span name="attr_rep_mod"></span>/<span name="attr_fame_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Cha</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_cha_value">.<input class="short" type="number" name="attr_cha_perc">%
+        </span>
+        <span class="box">
+          <div class="label">Skill Learning Modifier</div>
+          <span name="attr_cha_learn_mod"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Rep</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_rep_value">
+        </span>
+        <span class="box">
+          <div class="label">Reputation Points</div>
+          <span name="attr_rep_points"></span>
+        </span>
+      </div>
+      <div class="horizontal-set">
+        <span class="abbreviation">Fame</span>
+        <span class="box">
+          <input class="short" type="number" name="attr_fame_value">
+        </span>
+        <span class="box">
+          <div class="label">Fame Category</div>
+          <input type="text" style="width:75px" name="attr_fame_category">
+        </span>
+      </div>
     </div>
-    <div class="vertical-set">
+    <div class="vertical-set flex-half">
       <div class="encumbrance">
         <div class="encumbrance-line">
           <span>Lift</span>
@@ -97,10 +303,12 @@
         </div>
       </div>
       <div class="health">
-          Health stuff here
+        <h3>Hit Points</h3>
+        <div>Max: <input type="number" name="attr_hit_points_max"></div>
+        <div>Current: <input type="number" name="attr_hit_points"></div>
       </div>
     </div>
-    <div class="vertical-set">
+    <div class="vertical-set flex-one-and-a-half">
       <div class="speed">
         Speed stuff
       </div>
@@ -111,11 +319,23 @@
   </div>
   <div class="wounds">
     <h3>Wounds</h3>
-    <div class="wound"></div>
+    <fieldset class="repeating_wounds">
+      <div class="wound">
+        <input type="text" class="short" name="attr_wound_points" placeholder="points"> in <input type="text" class="medium" name="attr_wound_location" placeholder="location">; heals in <input type="text" name="attr_wound_days" placeholder="days">
+      </div>
+    </fieldset>
   </div>
   <div class="weapons">
     <h3>Weapons</h3>
-    <div class="weapon"></div>
+    <fieldset class="repeating_weapons">
+      <div class="weapon">
+        <div>Type: <input type="text" class="long" name="attr_weapon_type"> Draw Speed: <input type="text" name="attr_weapon_draw_speed"> Accuracy: <input type="text" name="attr_weapon_accuracy"> Damage/Shot <input type="text" name="attr_weapon_damage"> Reload Speed <input type="text" name="attr_weapon_reload_speed"></div>
+        <div>Shots Fired: <input type="number" name="attr_weapon_shots_fired"> Other Details: <input type="text" class="long" name="attr_weapon_details"></div>
+        <div class="horizontal-set">
+          <div class="flex-half">Range</div>
+        </div>
+      </div>
+    </fieldset>
   </div>
   <div class="skills">
     <h3 class="vertical-text">Skills</h3>
@@ -144,14 +364,31 @@
         </div>
       </div>
       <div class="horse">
-          <h3>Horse</h3>
-          <p>bad horse,</p>
-          <p>bad horse,</p>
-          <p>bad horse,</p>
-          <p>he's bad</p>
+        <h3>Horse</h3>
+        <span>Name: <input type="text" name="attr_horse_name"></span>
+        <span>Breed: <input type="text" name="attr_horse_breed"></span>
+        <span>Short Speed: <input type="text" name="attr_horse_short_speed"></span>
+        <span>Medium Speed: <input type="text" name="attr_horse_medium_speed"></span>
+        <span>Long Speed: <input type="text" name="attr_horse_long_speed"></span>
+        <span>Agility: <input type="text" name="attr_horse_agility"></span>
+        <span>Endurance: <input type="text" name="attr_horse_endurance"></span>
+        <span>Horse Sense: <input type="text" name="attr_horse_sense"></span>
+        <span>Temperament: <input type="text" name="attr_horse_temperament"></span>
+        <span>Trainability: <input type="text" name="attr_horse_trainability"></span>
+        <span>Mettle: <input type="text" name="attr_horse_mettle"></span>
+        <span>Soundness: <input type="text" name="attr_horse_soundness"></span>
+        <span>Strength: <input type="text" name="attr_horse_strength"></span>
+        <span>Hit Points: <input type="text" name="attr_horse_hp"></span>
+        <span>Vices: <input type="text" name="attr_horse_vices"></span>
+        <span>Markings: <input type="text" name="attr_horse_markings"></span>
       </div>
       <div class="professions">
-          <h3>Professional Experience</h3>
+        <h3>Profession Paths</h3>
+        <fieldset class="repeating_professions">
+          <input type="text" class="medium" name="attr_profession_name" placeholder="Profession">
+          <input type="text" name="attr_profession_bp" placeholder="BP Earned">
+          <input type="text" class="medium" name="notes" placeholder="Notes">
+        </fieldset>  
       </div>
     </div>
     <div class="vertical-set">
@@ -163,18 +400,52 @@
       </div>
       <div class="personal-goals">
           <h3>Personal Goals</h3>
+          <fieldset class="repeating_goals">
+            <input type="text" class="fill" name="attr_goals">
+          </fieldset>
       </div>
     </div>
   </div>
     <div class="family-history">
         <h3>Family History</h3>
+        <span>Circumstances Of Birth: <input type="text" class="long" name="attr_history_circumstances"></span>
+        <span>Birth Date: <input type="text" name="attr_history_birthdate"></span>
+        <span>Legitimate: <select class="short" name="attr_history_legitimate">
+          <option value="y">y</option>
+          <option value="n">n</option>
+        </select></span>
+        <span>No. Siblings: <input type="text" name="attr_history_sibling_qty"></span>
+        <span>Birth Order: <input type="text" name="attr_history_birth_order"></span>
+        <span>Mother: <input type="text" class="long" name="attr_history_mother_name"></span>
+        <span>Deceased?: <select class="short" name="attr_history_mother_dead">
+          <option value="y">y</option>
+          <option value="n">n</option>
+        </select></span>
+        <span>Father: <input type="text" class="long" name="attr_history_father_name"></span>
+        <span>Deceased?: <select class="short" name="attr_history_father_dead">
+          <option value="y">y</option>
+          <option value="n">n</option>
+        </select></span>
+        <span>Notes on Siblings: <input type="text" class="fill" name="attr_history_sibling_notes"></span>
+        <span>Upbringing: <input type="text" class="fill" name="attr_history_upbringing"></span>
+        <span>Place of Origin: <input type="text" class="medium" name="attr_history_birthplace"></span>
+        <span>Social Class: <input type="text" class="medium" name="attr_history_social_class"></span>
+        <span>Background: <input type="text" class="medium" name="attr_history_background"></span>
+        <span>Profession: <input type="text" class="medium" name="attr_histor_profession"></span>
+        <span>Reason You Went West: <input type="text" class="fill" name="attr_history_west"></span>
     </div>
     <div class="horizontal-set">
       <div class="allies-enemies">
-          <h3>Allies & Enemies</h3>
+        <h3>Allies & Enemies</h3>
+        <fieldset class="repeating_allies_enemies">
+          <input type="text" class="fill" name="attr_allies_enemies">
+        </fieldset>
       </div>
       <div class="notes">
-          <h3>Notes</h3>
+        <h3>Notes</h3>
+        <fieldset class="repeating_notes">
+          <input type="text" class="fill" name="attr_note">
+        </fieldset>  
       </div>
     </div>
 </div>
