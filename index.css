@@ -2,18 +2,22 @@
     box-sizing:  border-box;
     font-family: 'Courier New', serif;
     font-weight: bold;
+    color: beige;
 }
 
 .sheet-wrapper {
-    background: rgba(0,0,0,.15);
+    background: rgba(0,0,0,.15) url('http://www.msrha.com/uploads/weathered-paperH_0.jpg');
     display: flex;
     flex-direction: column;
 }
 
-.charsheet input {
+.charsheet input,
+.charsheet select {
     font-family: 'Courier New', serif;
     font-weight: lighter;
     width: 50px;
+    appearance: none;
+    -webkit-appearance: none;
     border-radius: 0;
     box-shadow: none;
     margin: 0 5px;
@@ -22,7 +26,8 @@
     background:  transparent;
 }
 
-.charsheet input:focus {
+.charsheet input:focus,
+.charsheet select:focus {
     background: rgba(255,255,255,.5);
     border: 1px solid;
 }
@@ -183,7 +188,11 @@ h3 {
 .sheet-box {
   margin: 0;
   padding: 5px;
-  border: 1px solid rgba(0,0,0,.5);
+  border: 1px solid;
+}
+
+.sheet-box:last-child {
+    margin-right: 5px;
 }
 
 span.sheet-abbreviation {
