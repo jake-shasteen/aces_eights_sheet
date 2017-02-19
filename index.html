@@ -32,6 +32,14 @@ var getIntAccMod = function(score) {
   }
 }
 
+var getWisSpdMod = function(score) {
+  var result = Math.ceil((score/3 * -1) + 5);
+  if( score <= 9 ) {
+    result += 1;
+  }
+  return result;
+}
+
 // not well-named because starting fame also uses this math
 var getSkillLearnMod = function(score) {
   if( score <= 10 ) {
@@ -122,6 +130,7 @@ on("change:wis_value", function() {
     setAttrs({
       wis_bp_bonus: bpBonus(values.wis_value),
       wis_learn_mod: getSkillLearnMod(values.wis_value),
+      wis_spd_mod: getWisSpdMod(values.wis_value),
     });
   })
 });
