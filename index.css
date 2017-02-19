@@ -2,20 +2,37 @@
     box-sizing:  border-box;
 }
 
-input {
-    width: 75px;
-    border-radius: none;
-    appearance: none;
+.charsheet input {
+    width: 50px;
+    border-radius: 0;
     box-shadow: none;
     margin: 0 5px;
-    border: none;
+    border: 1px solid transparent;
     border-bottom: 1px solid;
     background:  transparent;
+}
+
+.charsheet input:focus {
+    background: rgba(255,255,255,.5);
+    border: 1px solid;
+}
+
+.sheet-character-name input {
+    width: 100px;
+}
+
+.sheet-player-name input {
+    width: 100px;
+}
+
+.sheet-wrapper {
+    border: 1px solid;
 }
 
 .sheet-header {
     width: 100%;
     display: flex;
+    border-bottom: 1px solid;
 }
 
 .sheet-details {
@@ -25,9 +42,12 @@ input {
 }
 
 .sheet-header-field {
-    flex: 1;
+    line-height: 0;
+    margin: 5px;
 }
 
-.sheet-game-icon: {
-    flex: 1;
+.sheet-game-icon {
+    flex: .5;
+    display: flex;
+    align-items: center;
 }
