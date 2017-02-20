@@ -58,6 +58,10 @@
     align-items: center;
 }
 
+.btn {
+    color:  black;
+}
+
 .sheet-speed,
 .sheet-accuracy {
     padding:  5px;

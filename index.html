@@ -239,6 +239,16 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
   });
 });
 
+on("change:int_acc_mod change:dex_acc_mod", function() {
+  getAttrs(["int_acc_mod", "dex_acc_mod"], function(values) {
+    if (typeof values.int_acc_mod !== 'undefined' && typeof values.dex_acc_mod !== 'undefined') {
+      setAttrs({
+        base_accuracy: parseInt(values.int_acc_mod) + parseInt(values.dex_acc_mod),
+      });
+    }
+  });
+});
+
 </script>
 <div class="wrapper">
   <div class="header">
@@ -265,7 +275,7 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
       </div>
       <div class="header-field race">
         Race:
-        <input name="attr_race" type="text">
+        <input class="medium" name="attr_race" type="text">
       </div>
       <div class="header-field profession">
         Profession:
@@ -281,14 +291,11 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
       </div>
       <div class="header-field gender">
         Gender:
-        <select class="medium" name="attr_gender">
-          <option>MALE</option>
-          <option>OTHER</option>
-        </select>
+        <input class="medium" type="text" name="attr_gender">
       </div>
       <div class="header-field age">
         Age:
-        <input name="attr_age" type="text">
+        <input name="attr_age" type="number">
       </div>
       <div class="header-field height">
         Height:
@@ -351,7 +358,7 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
         </span>
         <span class="box">
           <div class="label">"To-Hit" modifier</div>
-          <span name="attr_to-hit_mod"></span>
+          <span name="attr_dex_acc_mod"></span>
         </span>
       </div>
       <div class="horizontal-set">
@@ -361,7 +368,7 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
         </span>
         <span class="box">
           <div class="label">Hit Point Modifier</div>
-          <span name="attr_hitpoint_mod"></span>
+          <span name="attr_con_hp_mod"></span>
         </span>
       </div>
       <div class="horizontal-set">
@@ -371,7 +378,7 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
         </span>
         <span class="box">
           <div class="label">Rep/Fame Modifiers</div>
-          <span name="attr_rep_mod"></span>/<span name="attr_fame_mod"></span>
+          <span><span name="attr_rep_mod"></span>/<span name="attr_fame_mod"></span></span>
         </span>
       </div>
       <div class="horizontal-set">
@@ -434,9 +441,35 @@ on("change:wis_spd_mod change:dex_spd_mod", function() {
         <div>
           Base Speed (wis mod + dex mod): <span name="attr_base_speed"></span>
         </div>
+        <div>
+          Adjusted Speed (all mods incl.): <span name="attr_adj_speed"></span>
+        </div>
+        <div>
+          Temp. Penalty: <span name="attr_temp_speed_pen"></span>
+        </div>
+        <fieldset class="repeating_speed_mods">
+          <div class="speed_mod horizontal-set">
+            <input type="text" class="medium" name="attr_speed_mod_name">
+            <input type="number" class="small" name="attr_speed_mod_value">
+          </div>
+        </fieldset>
       </div>
       <div class="accuracy">
-        Accuracy stuff
+        <div>
+          Base Accuracy (int mod + dex mod): <span name="attr_base_accuracy"></span>
+        </div>
+        <div>
+          Adjusted Accuracy (all mods incl.): <span name="attr_adj_accuracy"></span>
+        </div>
+        <div>
+          Temp. Penalty: <span name="attr_temp_accuracy_pen"></span>
+        </div>
+        <fieldset class="repeating_accuracy_mods">
+          <div class="accuracy_mod horizontal-set">
+            <input type="text" class="medium" name="attr_accuracy_mod_name">
+            <input type="number" class="small" name="attr_accuracy_mod_value">
+          </div>
+        </fieldset>
       </div>
     </div>
   </div>
