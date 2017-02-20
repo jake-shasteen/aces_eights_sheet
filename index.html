@@ -249,6 +249,26 @@ on("change:int_acc_mod change:dex_acc_mod", function() {
   });
 });
 
+on("change:base_speed change:repeating_speed", function() {
+  getSectionIDs("repeating_speed", function(idArray) {
+    var attrsToGet = idArray.map( function(id) {
+      return "repeating_speed_" + id + "_speed_mod_value";
+    });
+    debugger;
+    getAttrs(attrsToGet.concat("base_speed"), function(values) {
+      var sum = 0;
+      for(var i = 0; i < Object.keys(values).length; i++ ) {
+        var key = Object.keys(values)[i];
+        sum += parseInt(values[key]);
+      }
+      debugger;
+      setAttrs({
+        adj_speed: sum,
+      });
+    });
+  });
+});
+
 </script>
 <div class="wrapper">
   <div class="header">
@@ -447,7 +467,7 @@ on("change:int_acc_mod change:dex_acc_mod", function() {
         <div>
           Temp. Penalty: <span name="attr_temp_speed_pen"></span>
         </div>
-        <fieldset class="repeating_speed_mods">
+        <fieldset class="repeating_speed">
           <div class="speed_mod horizontal-set">
             <input type="text" class="medium" name="attr_speed_mod_name">
             <input type="number" class="small" name="attr_speed_mod_value">
@@ -555,40 +575,40 @@ on("change:int_acc_mod change:dex_acc_mod", function() {
         </fieldset>
       </div>
       <div class="personal-goals">
-          <h3>Personal Goals</h3>
-          <fieldset class="repeating_goals">
-            <input type="text" class="fill" name="attr_goals">
-          </fieldset>
+        <h3>Personal Goals</h3>
+        <fieldset class="repeating_goals">
+          <input type="text" class="fill" name="attr_goals">
+        </fieldset>
       </div>
     </div>
   </div>
     <div class="family-history">
-        <h3>Family History</h3>
-        <span>Circumstances Of Birth: <input type="text" class="long" name="attr_history_circumstances"></span>
-        <span>Birth Date: <input type="text" name="attr_history_birthdate"></span>
-        <span>Legitimate: <select class="short" name="attr_history_legitimate">
-          <option value="y">y</option>
-          <option value="n">n</option>
-        </select></span>
-        <span>No. Siblings: <input type="text" name="attr_history_sibling_qty"></span>
-        <span>Birth Order: <input type="text" name="attr_history_birth_order"></span>
-        <span>Mother: <input type="text" class="long" name="attr_history_mother_name"></span>
-        <span>Deceased?: <select class="short" name="attr_history_mother_dead">
-          <option value="y">y</option>
-          <option value="n">n</option>
-        </select></span>
-        <span>Father: <input type="text" class="long" name="attr_history_father_name"></span>
-        <span>Deceased?: <select class="short" name="attr_history_father_dead">
-          <option value="y">y</option>
-          <option value="n">n</option>
-        </select></span>
-        <span>Notes on Siblings: <input type="text" class="fill" name="attr_history_sibling_notes"></span>
-        <span>Upbringing: <input type="text" class="fill" name="attr_history_upbringing"></span>
-        <span>Place of Origin: <input type="text" class="medium" name="attr_history_birthplace"></span>
-        <span>Social Class: <input type="text" class="medium" name="attr_history_social_class"></span>
-        <span>Background: <input type="text" class="medium" name="attr_history_background"></span>
-        <span>Profession: <input type="text" class="medium" name="attr_histor_profession"></span>
-        <span>Reason You Went West: <input type="text" class="fill" name="attr_history_west"></span>
+      <h3>Family History</h3>
+      <span>Circumstances Of Birth: <input type="text" class="long" name="attr_history_circumstances"></span>
+      <span>Birth Date: <input type="text" name="attr_history_birthdate"></span>
+      <span>Legitimate: <select class="short" name="attr_history_legitimate">
+        <option value="Y">Y</option>
+        <option value="N">N</option>
+      </select></span>
+      <span>No. Siblings: <input type="text" name="attr_history_sibling_qty"></span>
+      <span>Birth Order: <input type="text" name="attr_history_birth_order"></span>
+      <span>Mother: <input type="text" class="long" name="attr_history_mother_name"></span>
+      <span>Deceased?: <select class="short" name="attr_history_mother_dead">
+        <option value="Y">Y</option>
+        <option value="N">N</option>
+      </select></span>
+      <span>Father: <input type="text" class="long" name="attr_history_father_name"></span>
+      <span>Deceased?: <select class="short" name="attr_history_father_dead">
+        <option value="Y">Y</option>
+        <option value="N">N</option>
+      </select></span>
+      <span>Notes on Siblings: <input type="text" class="fill" name="attr_history_sibling_notes"></span>
+      <span>Upbringing: <input type="text" class="fill" name="attr_history_upbringing"></span>
+      <span>Place of Origin: <input type="text" class="medium" name="attr_history_birthplace"></span>
+      <span>Social Class: <input type="text" class="medium" name="attr_history_social_class"></span>
+      <span>Background: <input type="text" class="medium" name="attr_history_background"></span>
+      <span>Profession: <input type="text" class="medium" name="attr_histor_profession"></span>
+      <span>Reason You Went West: <input type="text" class="fill" name="attr_history_west"></span>
     </div>
     <div class="horizontal-set">
       <div class="allies-enemies">
