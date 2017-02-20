@@ -249,25 +249,38 @@ on("change:int_acc_mod change:dex_acc_mod", function() {
   });
 });
 
-on("change:base_speed change:repeating_speed", function() {
-  getSectionIDs("repeating_speed", function(idArray) {
-    var attrsToGet = idArray.map( function(id) {
-      return "repeating_speed_" + id + "_speed_mod_value";
-    });
-    debugger;
-    getAttrs(attrsToGet.concat("base_speed"), function(values) {
-      var sum = 0;
-      for(var i = 0; i < Object.keys(values).length; i++ ) {
-        var key = Object.keys(values)[i];
-        sum += parseInt(values[key]);
-      }
-      debugger;
-      setAttrs({
-        adj_speed: sum,
+/*
+ * @params speedOrAccuracy {String} literally the string 'speed' or 'accuracy'
+ */
+var updateBasedOnModifiers = function(speedOrAccuracy) {
+  return function() {
+    getSectionIDs("repeating_" + speedOrAccuracy, function(idArray) {
+      var attrsToGet = idArray.map( function(id) {
+        return "repeating_" + speedOrAccuracy + "_" + id + "_" + speedOrAccuracy + "_mod_value";
+      });
+      getAttrs(attrsToGet.concat("base_" + speedOrAccuracy), function(values) {
+        var sum = 0;
+        for(var i = 0; i < Object.keys(values).length; i++ ) {
+          var key = Object.keys(values)[i];
+          sum += parseInt(values[key]);
+        }
+        if (speedOrAccuracy === 'speed') {
+          setAttrs({
+            adj_speed: sum,
+          });
+        } else if (speedOrAccuracy === 'accuracy') {
+          setAttrs({
+            adj_accuracy: sum,
+          });
+        }
       });
     });
-  });
-});
+  }
+}
+
+on("change:base_speed change:repeating_speed", updateBasedOnModifiers('speed'));
+
+on("change:base_accuracy change:repeating_accuracy", updateBasedOnModifiers('accuracy'));
 
 </script>
 <div class="wrapper">
@@ -484,7 +497,7 @@ on("change:base_speed change:repeating_speed", function() {
         <div>
           Temp. Penalty: <span name="attr_temp_accuracy_pen"></span>
         </div>
-        <fieldset class="repeating_accuracy_mods">
+        <fieldset class="repeating_accuracy">
           <div class="accuracy_mod horizontal-set">
             <input type="text" class="medium" name="attr_accuracy_mod_name">
             <input type="number" class="small" name="attr_accuracy_mod_value">
